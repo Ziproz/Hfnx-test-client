@@ -8,7 +8,9 @@
 
 # Node
 /node_modules
-package-lock.json
+/package-lock.json
+.vscode
+/.vscode
 npm-debug.log
 yarn-error.log
 
