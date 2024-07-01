@@ -8,7 +8,7 @@
   
   <div class="results-container" *ngIf="repositories.length > 0">
     <mat-card class="repository" *ngFor="let repo of repositories">
-      <img [src]="repo.owner.avatar_url" alt="{{repo.owner.login}}'s avatar" class="avatar">
+      <img [src]="repo.owner.avatarUrl" alt="{{repo.owner.login}}'s avatar" class="avatar">
       <h3>{{repo.name}}</h3>
       <button mat-button color="accent" (click)="bookmarkRepo(repo)">Bookmark</button>
     </mat-card>

@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { Repository } from '../../models/repository.model';
+
 
 @Component({
   selector: 'app-search',
@@ -16,7 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class SearchComponent {
   searchQuery: string = '';
-  repositories: any[] = [];
+  repositories: Repository[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -29,14 +31,19 @@ export class SearchComponent {
   //   }
   // }
 
+ 
+  
   onSearch() {
     if (this.searchQuery.trim()) {
-      this.http.get(`http://localhost:5000/api/repositories/search?query=${this.searchQuery}`)
-        .subscribe((response: any) => {
+      this.http.get<Repository[]>(`http://localhost:5000/api/repositories/search?query=${this.searchQuery}`)
+        .subscribe((response: Repository[]) => {
+          console.log('Response from API:', response); // הוספת לוגים כדי לבדוק את התשובה
           this.repositories = response;
+        }, error => {
+          console.error('Error fetching data from API:', error); // הוספת לוגים כדי לבדוק שגיאות
         });
     }
-  }
+  }  
 
   bookmarkRepo(repo: any) {
     // לוגיקה לסימון מאגר כסימניה ושמירתו בסשן

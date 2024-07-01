@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchComponent } from './search/search.component';
+import { SearchComponent } from './components/search/search.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './guards/auth.guard'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/search', pathMatch: 'full' },
-  { path: 'search', loadComponent: () => import('./search/search.component').then(m => m.SearchComponent) }
+  // { path: '', redirectTo: '/search', pathMatch: 'full' },
+  // { path: 'search', loadComponent: () => import('./components/search/search.component').then(m => m.SearchComponent) }
+  { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
