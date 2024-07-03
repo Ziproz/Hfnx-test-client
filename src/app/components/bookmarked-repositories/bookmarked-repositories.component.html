@@ -1,0 +1,12 @@
+<div class="bookmark-list">
+    <h2>Bookmarked Repositories</h2>
+    <div *ngIf="bookmarks.length === 0">No bookmarks found.</div>
+    <div *ngFor="let bookmark of bookmarks" class="bookmark-item">
+      <img [src]="bookmark.owner.avatarUrl" alt="Owner Avatar" class="avatar">
+      <div class="details">
+        <h3>{{ bookmark.name }}</h3>
+        <!-- <p>{{ bookmark.description }}</p>
+        <a [href]="bookmark.html_url" target="_blank">View on GitHub</a> -->
+      </div>
+    </div>
+  </div>

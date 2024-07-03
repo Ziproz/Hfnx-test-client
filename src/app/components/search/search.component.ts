@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { Repository } from '../../models/repository.model';
+import { BookmarkService } from '../../services/bookmark.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class SearchComponent {
   searchQuery: string = '';
   repositories: Repository[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private bookmarkService: BookmarkService) {}
 
   // onSearch() {
   //   if (this.searchQuery.trim()) {
@@ -45,8 +47,9 @@ export class SearchComponent {
     }
   }  
 
-  bookmarkRepo(repo: any) {
+  bookmarkRepo(repository: Repository) {
     // לוגיקה לסימון מאגר כסימניה ושמירתו בסשן
-    console.log('Bookmarking repository:', repo);
+    //console.log('Bookmarking repository:', repo);
+    this.bookmarkService.bookmarkRepository(repository).subscribe();
   }
 }

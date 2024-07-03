@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-// import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
+import { Repository } from '../models/repository.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookmarkService {
-//   private apiUrl = `${environment.apiUrl}/bookmark`;
+  private apiUrl = `${environment.apiUrl}/bookmark`;
 
-//   constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-//   bookmarkRepository(repository: any) {
-//     return this.http.post(`${this.apiUrl}/bookmark`, repository);
-//   }
+  bookmarkRepository(repository: any) {
+    return this.http.post(`${this.apiUrl}/bookmark`, repository);
+  }
 
-//   getBookmarks() {
-//     return this.http.get(`${this.apiUrl}/bookmarks`);
-//   }
+  getBookmarks()  :Observable<Repository[]> {
+    return this.http.get<Repository[]>(`${this.apiUrl}/bookmarks`);
+  }
 }
