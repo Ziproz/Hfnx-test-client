@@ -12,11 +12,13 @@ export class BookmarkService {
 
   constructor(private http: HttpClient) {}
 
-  bookmarkRepository(repository: any) {
-    return this.http.post(`${this.apiUrl}/bookmark`, repository);
+  saveBookmark(userId: string, repository: Repository): Observable<any> {
+    const body = { userId, repository };
+    return this.http.post(`${this.apiUrl}/save`, body);
   }
 
-  getBookmarks()  :Observable<Repository[]> {
-    return this.http.get<Repository[]>(`${this.apiUrl}/bookmarks`);
+  getBookmarks(userId: string): Observable<any[]> {
+    const url = `${this.apiUrl}/getBookmarks?userId=${userId}`;
+    return this.http.get<any[]>(url);
   }
 }

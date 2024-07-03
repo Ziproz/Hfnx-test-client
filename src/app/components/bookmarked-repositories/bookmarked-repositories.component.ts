@@ -25,7 +25,7 @@ export class BookmarkedRepositoriesComponent implements OnInit {
     }
   
     loadBookmarks(): void {
-      this.bookmarkService.getBookmarks().subscribe((data: Repository[]) => {
+      this.bookmarkService.getBookmarks("1").subscribe((data: Repository[]) => {
         this.bookmarks = data;
       });
     }

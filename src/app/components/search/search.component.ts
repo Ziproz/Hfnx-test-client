@@ -50,6 +50,6 @@ export class SearchComponent {
   bookmarkRepo(repository: Repository) {
     // לוגיקה לסימון מאגר כסימניה ושמירתו בסשן
     //console.log('Bookmarking repository:', repo);
-    this.bookmarkService.bookmarkRepository(repository).subscribe();
+    this.bookmarkService.saveBookmark("1", repository).subscribe();
   }
 }
