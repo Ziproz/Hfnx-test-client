@@ -1,9 +1,14 @@
 <div>
-  <nav>
-    <!-- ניווט אם נדרש -->
-    <a routerLink="/search">Search</a>
-    <a routerLink="/bookmarks">View Bookmarks</a>
-  </nav>
-  <app-spinner></app-spinner>
-  <router-outlet></router-outlet>
+  <mat-toolbar color="primary">
+    <span>My Hfnx Test</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/login">Login</button>
+    <button mat-button routerLink="/search">Search</button>
+    <button mat-button routerLink="/bookmarks">Bookmarks</button>
+  </mat-toolbar>
+
+  <div class="app-container">
+    <app-spinner></app-spinner> 
+    <router-outlet></router-outlet>
+  </div>
 </div>

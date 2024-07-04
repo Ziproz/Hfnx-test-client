@@ -7,4 +7,5 @@ export interface Owner {
 export interface Repository {
     name: string;
     owner: Owner;
+    isBookmarked:boolean;
   }  

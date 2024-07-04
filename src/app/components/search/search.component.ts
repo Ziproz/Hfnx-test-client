@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { Repository } from '../../models/repository.model';
 import { BookmarkService } from '../../services/bookmark.service';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -20,36 +21,30 @@ import { BookmarkService } from '../../services/bookmark.service';
 export class SearchComponent {
   searchQuery: string = '';
   repositories: Repository[] = [];
+  private apiUrl = `${environment.apiUrl}/repositories`;
 
   constructor(private http: HttpClient,
               private bookmarkService: BookmarkService) {}
 
-  // onSearch() {
-  //   if (this.searchQuery.trim()) {
-  //     this.http.get(`https://api.github.com/search/repositories?q=${this.searchQuery}`)
-  //       .subscribe((response: any) => {
-  //         this.repositories = response.items;
-  //       });
-  //   }
-  // }
-
- 
-  
   onSearch() {
     if (this.searchQuery.trim()) {
-      this.http.get<Repository[]>(`http://localhost:5000/api/repositories/search?query=${this.searchQuery}`)
+      this.http.get<Repository[]>(`${this.apiUrl}/search?query=${this.searchQuery}`)
         .subscribe((response: Repository[]) => {
-          console.log('Response from API:', response); // הוספת לוגים כדי לבדוק את התשובה
+          console.log('Response from API:', response); 
           this.repositories = response;
         }, error => {
-          console.error('Error fetching data from API:', error); // הוספת לוגים כדי לבדוק שגיאות
+          console.error('Error fetching data from API:', error); 
         });
     }
   }  
 
   bookmarkRepo(repository: Repository) {
-    // לוגיקה לסימון מאגר כסימניה ושמירתו בסשן
-    //console.log('Bookmarking repository:', repo);
+    console.log('Bookmarking repository:', repository);
+    //in reality send User.userId
     this.bookmarkService.saveBookmark("1", repository).subscribe();
+  }
+
+  toggleBookmark(repository: Repository) {
+    repository.isBookmarked = !repository.isBookmarked;
   }
 }

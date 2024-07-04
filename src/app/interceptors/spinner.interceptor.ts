@@ -1,6 +1,5 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { inject } from '@angular/core';
+import { HttpInterceptorFn } from '@angular/common/http';
 import { finalize } from 'rxjs/operators';
 import { SpinnerService } from '../services/spinner.service';
 
@@ -14,13 +13,3 @@ export const SpinnerInterceptor: HttpInterceptorFn = (req, next) => {
       );
 }
 
-//   constructor(private spinnerService: SpinnerService) {}
-
-//   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-//     this.spinnerService.show();
-
-//     return next.handle(req).pipe(
-//       finalize(() => this.spinnerService.hide())
-//     );
-//   }
-// }
